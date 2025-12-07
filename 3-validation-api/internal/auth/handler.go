@@ -2,7 +2,6 @@ package auth
 
 import (
 	"3-validation-api/configs"
-	"3-validation-api/pkg/res"
 	"fmt"
 	"net/http"
 )
@@ -19,7 +18,7 @@ func NewVerifyHandler(router *http.ServeMux, deps AuthHandlerDeps) {
 		deps.Config,
 	}
 	router.HandleFunc("POST /send", handler.Send())
-	router.HandleFunc("POST /verify/{hash}", handler.Verify())
+	router.HandleFunc("GET /verify/{hash}", handler.Verify())
 }
 
 func (handler *VerifyHandler) Send() http.HandlerFunc {
